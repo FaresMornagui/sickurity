@@ -1,0 +1,96 @@
+.nav-link {
+  cursor:pointer;
+}
+
+.tag-pill{
+  cursor:pointer;
+}
+
+.searchbar{
+  margin-bottom: auto;
+  margin-top: auto;
+  height: 60px;
+  background-color: #323b6e9d;
+  border-radius: 30px;
+  padding: 10px;
+  }
+
+  .search_input{
+  color: rgba(255, 255, 255, 0.87);
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 0;
+  caret-color:transparent;
+  line-height: 40px;
+  transition: width 0.4s linear;
+  }
+
+  .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:rgb(180, 176, 176);
+    transition: width 0.4s linear;
+    }
+  
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #858180;
+    }
+
+  .search_icon{
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color:white;
+  }
+
+
+
+.cta-100 {
+  margin-top: 100px;
+  padding-left: 8%;
+  padding-top: 7%;
+}
+.col-md-4{
+    padding-bottom:20px;
+}
+
+.white {
+  color: #fff !important;
+}
+.mt{float: left;margin-top: -20px;padding-top: 20px;}
+.bg-blue-ui {
+  background-color: #708198 !important;
+}
+figure img{width:300px;}
+
+#blogCarousel {
+  padding-bottom: 100px;
+}
+
+.blog .carousel-indicators {
+  left: 0;
+  top: -50px;
+  height: 50%;
+}
+
+.banner{
+  color: #fff;
+  background-color: #323b6e2f;
+  font-family:"Bickley Script", cursive, serif;
+ 
+}
+
+.container{
+  font-family:"Courier New", monospace;
+ 
+}
+.logo-font{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+
+}

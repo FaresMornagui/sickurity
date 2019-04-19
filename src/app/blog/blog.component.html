@@ -1,0 +1,93 @@
+
+<body>
+    <div class="siimple-content siimple-content--large">
+        <div class="siimple--clearfix">
+            <div class="siimple--float-left">
+                <a href="#" class="siimple-navbar-title siimple--color-dark">Blog title</a>
+            </div>
+            <div class="siimple--float-right">
+                <a href="#" class="siimple-btn siimple-btn--light">About</a>
+                <a href="#" class="siimple-btn siimple-btn--light">Contact</a>
+            </div>        
+        </div>
+        <div class="siimple-rule"></div>
+        <div class="siimple-jumbotron siimple-jumbotron--dark siimple--px-5 siimple--mb-4 siimple--rounded">
+            <div class="siimple-jumbotron-title">Server-Side Template Injection
+                </div>
+            <div class="siimple-jumbotron-detail">
+                    Template engines are widely used by web applications to present dynamic data via web pages and emails. Unsafely embedding user input in templates enables Server-Side Template Injection, a frequently critical vulnerability that is extremely easy to mistake for Cross-Site Scripting (XSS), or miss entirely. Unlike XSS, Template Injection can be used to directly attack web servers' internals and often obtain Remote Code Execution (RCE), turning every vulnerable application into a potential pivot point.
+
+                    Template Injection can arise both through developer error, and through the intentional exposure of templates in an attempt to offer rich functionality, as commonly done by wikis, blogs, marketing applications and content management systems. Intentional template injection is such a common use-case that many template engines offer a 'sandboxed' mode for this express purpose. This paper defines a methodology for detecting and exploiting template injection, and shows it being applied to craft RCE zerodays for two widely deployed enterprise web applications. Generic exploits are demonstrated for five of the most popular template engines, including escapes from sandboxes whose entire purpose is to handle user-supplied templates in a safe way.
+                    
+                    For a slightly less dry account of this research, you may prefer to watch my Black Hat USA presentation on this topic. This research is also available as printable whitepaper.
+            </div>
+            <div class="siimple--mt-3">
+                <a  class="siimple-btn siimple--bg-white siimple--color-dark" routerLink="/serverside">
+                    Read <strong>more</strong>...
+                </a>
+            </div>
+        </div>
+        <div class="siimple-grid blog-content">
+            <div class="siimple-grid-row">
+                <div class="siimple-grid-col siimple-grid-col--3">
+                    <div class="siimple--pb-4">
+                        <div class="siimple-h4 siimple--mb-2">About </div>
+                        <div class="siimple-paragraph siimple--text-justify siimple--mb-0">
+                            About    About    About    About    About    About    About    About    About    About    About    About    About  
+                        </div>
+                    </div>
+                    <div class="siimple--pt-4 siimple--pb-4">
+                        <div class="siimple-h4 siimple--mb-2">Newsletter</div>
+                        <div class="siimple-paragraph siimple--mb-2 siimple--text-justify">
+                                Newsletter Newsletter Newsletter Newsletter Newsletter Newsletter Newsletter Newsletter Newsletter Newsletter 
+                        </div>
+                        <input type="email" class="siimple-input siimple-input--fluid" placeholder="you@email.com">
+                        <div class="siimple-btn siimple-btn--dark siimple-btn--fluid siimple--mt-1">
+                            Subscribe
+                        </div>
+                    </div>
+                    <div class="siimple--pt-4 siimple--pb-4">
+                        <div class="siimple-h4 siimple--mb-2">Archive</div>
+                        <div class="siimple-paragraph">
+                            <a class="siimple-link" href="#">May 2019</a><br>
+                            <a class="siimple-link" href="#">April 2019</a><br>
+                            <a class="siimple-link" href="#">March 2019</a><br>
+                            <a class="siimple-link" href="#">February 2019</a><br>
+                            <a class="siimple-link" href="#">January 2019</a><br>
+                            <a class="siimple-link" href="#">December 2018</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="siimple-grid-col siimple-grid-col--9">
+                    <div class="siimple-h2">Blog post</div>
+                    <div class="siimple-paragraph siimple--text-justify">
+                        This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information 
+                    </div>
+                    <div class="siiple-paragraph siimple-small">
+                        Posted by <a href="#" class="siimple-link">Bob Williams</a> (Published on <strong>January 1, 2019</strong>).
+                    </div>
+                    <div class="siimple-h2">Blog post</div>
+                    <div class="siimple-paragraph siimple--text-justify">
+                            This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information 
+                    </div>
+                    <div class="siiple-paragraph siimple-small">
+                        Posted by <a href="#" class="siimple-link">Bob Williams</a> (Published on <strong>January 1, 2019</strong>).
+                    </div>
+                    <div class="siimple-h2">Blog post</div>
+                    <div class="siimple-paragraph siimple--text-justify">
+                            This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information  This is blog information 
+                    </div>
+                    <div class="siiple-paragraph siimple-small">
+                        Posted by <a href="#" class="siimple-link">Bob Williams</a> (Published on <strong>January 1, 2019</strong>).
+                    </div>
+                    <div class="siimple--mt-4">
+                        <a href="#" class="siimple-btn siimple-btn--light">Older posts</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+

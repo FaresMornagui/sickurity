@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+ body{
+    background: transparent url(assets/img/background.jpg) 0px 0px no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.navbar{
+    background-color: #0d0c0e4b;
+
+}
+
+.navbar-brand a{
+color: aquamarine;
+}
+
+
+
+
+

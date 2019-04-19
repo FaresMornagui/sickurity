@@ -1,0 +1,146 @@
+<body>
+    <div class="siimple-jumbotron siimple-jumbotron--dark siimple--px-5 siimple--mb-4 siimple--rounded">
+        <div class="siimple-content siimple-content--large siimple--mt-5">
+
+            <div class="siimple--mb-5" align="center">
+                <div class="siimple-h1 siimple--text-normal siimple--mb-1">Server-Side Template Injection</div>
+                <p>
+                    <img src="assets/img/serverside.png" alt="serverside" />
+                </p>
+                <div class="siimple-h1 siimple--text-normal siimple--mb-1">Introduction</div>
+                <div class="siimple-paragraph siimple-paragraph--lead">
+                    Web applications frequently use template systems such as Twig
+                    and FreeMarker to embed dynamic content in web pages and emails. Template Injection occurs when user
+                    input
+                    is embedded in a template in an unsafe manner. Consider a marketing application that sends bulk
+                    emails,
+                    and
+                    uses a Twig template to greet recipients by name. If the name is merely passed in to the template,
+                    as in
+                    the
+                    following example, everything works fine:
+                </div>
+                <p>
+                    <img src="assets/img/1.JPG" alt="serverside" />
+                </p>
+                <div class="siimple-paragraph siimple-paragraph--lead">
+                    However, if users are allowed to customize these emails, problems arise:
+                </div>
+                <p>
+                    <img src="assets/img/2.JPG" alt="serverside" />
+                </p>
+                <div class="siimple-paragraph siimple-paragraph--lead">
+                    In this example the user controls the content of the template itself via the custom_email GET
+                    parameter,
+                    rather than a value passed into it. This results in an XSS vulnerability that is hard to miss.
+                    However,
+                    the XSS is just a symptom of a subtler, more serious vulnerability. This code actually exposes an
+                    expansive but easily overlooked attack surface. The output from the following two greeting messages
+                    hints at a server-side vulnerability:
+                </div>
+                <p>
+                    <img src="assets/img/3.JPG" alt="serverside" />
+                </p>
+                <p>
+                    <img src="assets/img/4.JPG" alt="serverside" />
+                </p>
+                <div class="siimple-paragraph siimple-paragraph--lead">
+                    What we have here is essentially server-side code execution inside a sandbox. Depending on the
+                    template
+                    engine used, it may be possible to escape the sandbox and execute arbitrary code.
+
+                    This vulnerability typically arises through developers intentionally letting users submit or edit
+                    templates - some template engines offer a secure mode for this express purpose. It is far from
+                    specific
+                    to marketing applications - any features that support advanced user-supplied markup may be
+                    vulnerable,
+                    including wiki-pages, reviews, and even comments. Template injection can also arise by accident,
+                    when
+                    user input is simply concatenated directly into a template. This may seem slightly
+                    counter-intuitive,
+                    but it is equivalent to SQL Injection vulnerabilities occurring in poorly written prepared
+                    statements,
+                    which are a relatively common occurrence. Furthermore, unintentional template injection is extremely
+                    easy to miss as there typically won't be any visible cues. As with all input based vulnerabilities,
+                    the
+                    input could originate from out of band sources. For example, it may occur as a Local File Include
+                    (LFI)
+                    variant, exploitable through classic LFI techniques such as code embedded in log files, session
+                    files,
+                    or /proc/self/env.
+
+                    The 'Server-Side' qualifier is used to distinguish this from vulnerabilities in client-side
+                    templating
+                    libraries such as those provided by jQuery and KnockoutJS. Client-side template injection can often
+                    be
+                    abused for XSS attacks, as detailed by Mario Heiderich. This paper will exclusively cover attacking
+                    server-side templating, with the goal of obtaining arbitrary code execution.
+                </div>
+                <div class="siimple-h1 siimple--text-normal siimple--mb-1">Template Injection methodology</div>
+                <div class="siimple-paragraph siimple-paragraph--lead">
+                    I have defined the following high level methodology to capture an efficient attack process, based on
+                    my
+                    experience auditing a range of vulnerable applications and template engines:
+                </div>
+                <p>
+                    <img src="assets/img/5.png" alt="serverside" />
+                </p>
+                <div class="siimple-h1 siimple--text-normal siimple--mb-1">Detect</div>
+                <div class="siimple-paragraph siimple-paragraph--lead">
+                    This vulnerability can appear in two distinct contexts, each of which requires its own detection
+                    method:
+                </div>
+                <div class="siimple-h1 siimple--text-normal siimple--mb-1">1. Plaintext context</div>
+                <div class="siimple-paragraph siimple-paragraph--lead">
+                    Most template languages support a freeform 'text' context where you can directly input HTML. It will
+                    typically appear in one of the following ways:
+                </div>
+                <p>
+                    <img src="assets/img/6.JPG" alt="serverside" />
+                </p>
+                <p>
+                    <img src="assets/img/7.JPG" alt="serverside" />
+                </p>
+                <p>
+                    <img src="assets/img/8.JPG" alt="serverside" />
+                </p>
+                <div class="siimple-paragraph siimple-paragraph--lead">
+                    This frequently results in XSS, so the presence of XSS can be used as a cue for more thorough
+                    template
+                    injection probes. Template languages use syntax chosen explicitly not to clash with characters used
+                    in
+                    normal HTML, so it's easy for a manual blackbox security assessment to miss template injection
+                    entirely.
+                    To detect it, we need to invoke the template engine by embedding a statement. There are a huge
+                    number of
+                    template languages but many of them share basic syntax characteristics. We can take advantage of
+                    this by
+                    sending generic, template-agnostic payloads using basic operations to detect multiple template
+                    engines
+                    with a single HTTP request:
+                </div>
+                <p>
+                    <img src="assets/img/9.JPG" alt="serverside" />
+                </p>
+                <div class="siimple-h1 siimple--text-normal siimple--mb-1">2. Code context</div>
+                <div class="siimple-paragraph siimple-paragraph--lead">
+                    User input may also be placed within a template statement, typically as a variable name:
+                </div>
+                <p>
+                    <img src="assets/img/10.JPG" alt="serverside" />
+                </p>
+                <div class="siimple-paragraph siimple-paragraph--lead">
+                    This variant is even easier to miss during an assessment, as it doesn't result in obvious XSS and is
+                    almost indistinguishable from a simple hashmap lookup. Changing the value from username will
+                    typically
+                    either result in a blank result or the application erroring out. It can be detected in a robust
+                    manner
+                    by verifying the parameter doesn't have direct XSS, then breaking out of the template statement and
+                    injecting HTML tag after it: </div>
+                <p>
+                    <img src="assets/img/11.JPG" alt="serverside" />
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
