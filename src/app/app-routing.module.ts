@@ -32,6 +32,23 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: './pages/dashboard/dashboard.module#DashboardModule'
   },
+  {
+    path: 'scandetails',
+    loadChildren: './pages/dashboard/section/scandetails/scandetails.module#ScandetailsModule'
+  },
+  {
+    path: 'listreports',
+    loadChildren: './pages/dashboard/section/listreports/listreports.module#ListreportsModule'
+  },
+  {
+    path: 'listscans',
+    loadChildren: './pages/dashboard/section/listscans/listscans.module#ListscansModule'
+  },
+  {
+    path: 'account',
+    loadChildren: './pages/dashboard/section/account/account.module#AccountModule'
+  },
+  
   
 
 ];
