@@ -4,45 +4,36 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 const routes: Routes = [
   {
     path: 'settings',
-    loadChildren: './settings/settings.module#SettingsModule'
-  },
-  {
-    path: 'profile',
-    loadChildren: './profile/profile.module#ProfileModule'
-  },
-  {
-    path: 'editor',
-    loadChildren: './editor/editor.module#EditorModule'
+    loadChildren: './pages/settings/settings.module#SettingsModule'
   },
   {
     path: 'tools',
-    loadChildren: './tools/tools.module#ToolsModule'
-  },
-  {
-    path: 'dashboard',
-    loadChildren: './dashboard/dashboard.module#DashboardModule'
-  },
-  {
-    path: 'features',
-    loadChildren: './features/features.module#FeaturesModule'
-  },
-  {
-    path: 'aboutus',
-    loadChildren: './aboutus/aboutus.module#AboutusModule'
-  },
-  {
-    path: 'serverside',
-    loadChildren: './serverside/serverside.module#ServersideModule'
-  },
-  {
-    path: 'blog',
-    loadChildren: './blog/blog.module#BlogModule'
+    loadChildren: './pages/tools/tools.module#ToolsModule'
   },
 
   {
-    path: 'article',
-    loadChildren: './article/article.module#ArticleModule'
-  }
+    path: 'features',
+    loadChildren: './pages/features/features.module#FeaturesModule'
+  },
+
+  {
+    path: 'aboutus',
+    loadChildren: './pages/aboutus/aboutus.module#AboutusModule'
+  },
+  {
+    path: 'serverside',
+    loadChildren: './pages/serverside/serverside.module#ServersideModule'
+  },
+  {
+    path: 'blog',
+    loadChildren: './pages/blog/blog.module#BlogModule'
+  },
+  {
+    path: 'dashboard',
+    loadChildren: './pages/dashboard/dashboard.module#DashboardModule'
+  },
+  
+
 ];
 
 @NgModule({

@@ -2,19 +2,23 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
-import { HomeModule } from './home/home.module';
+import { AuthModule } from './pages/auth/auth.module';
+import { HomeModule } from './pages/home/home.module';
 import {
   FooterComponent,
   HeaderComponent,
   SharedModule
-} from './shared';
+} from './pages/shared';
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
-import { ToolsModule } from './tools/tools.module';
-import { AboutusModule } from './aboutus/aboutus.module';
-import { BlogModule } from './blog/blog.module';
-import { FeaturesModule } from './features/features.module';
+import { CoreModule } from './pages/core/core.module';
+import { AboutusModule } from './pages/aboutus/aboutus.module';
+import { BlogModule } from './pages/blog/blog.module';
+import { FeaturesModule } from './pages/features/features.module';
+import { ToolsModule } from './pages/tools/tools.module';
+import { DashboardModule } from './pages/dashboard/dashboard.module';
+import { TreeviewModule } from 'ngx-treeview';
+
+
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
@@ -23,11 +27,14 @@ import { FeaturesModule } from './features/features.module';
     CoreModule,
     SharedModule,
     HomeModule,
-    ToolsModule, 
     FeaturesModule,
     AboutusModule,
+    DashboardModule,
+  
     BlogModule,
     AuthModule,
+    ToolsModule,
+    TreeviewModule.forRoot(),
     AppRoutingModule
   ],
   providers: [],
